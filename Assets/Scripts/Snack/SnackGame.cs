@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Snack;
 using UnityEngine;
 
 public class SnackGame : MonoBehaviour
@@ -42,12 +43,10 @@ public class SnackGame : MonoBehaviour
         Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 45));
         Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 45));
         
-        var offestX = 5;
-        var offestY = 5;
 
-        for (float i = bottomLeft.x; i < topRight.x; i += offestX)
+        for (float i = bottomLeft.x; i < topRight.x; i += GameConst.foodCellW)
         {
-            for (float j = bottomLeft.y; j < topRight.y; j += offestY)
+            for (float j = bottomLeft.y; j < topRight.y; j += GameConst.foodCellW)
             {
                 var food = Instantiate(foodCellPre);
                 food.transform.parent = transform;
