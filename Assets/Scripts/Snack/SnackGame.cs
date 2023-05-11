@@ -8,10 +8,13 @@ public class SnackGame : MonoBehaviour
 
     [Header("食物预制体")] public GameObject foodCellPre;
     
+    [Header("蛇头预制体")] public GameObject headPre;
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        GenerateFood();
+        InitGame();
     }
 
     // Update is called once per frame
@@ -19,7 +22,20 @@ public class SnackGame : MonoBehaviour
     {
         
     }
-    
+
+    private void InitGame()
+    {
+        GenerateHead();
+        GenerateFood();
+    }
+
+    private void GenerateHead()
+    {
+        var head = Instantiate(headPre);
+        head.transform.parent = transform;
+        head.transform.localPosition = Vector3.zero;
+    }
+
     // 生成食物
     private void GenerateFood()
     {
