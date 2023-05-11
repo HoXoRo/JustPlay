@@ -1,4 +1,8 @@
 .idea
+/.idea/
 .gitattributes
 *.sln
 /Library/
+/Temp/
+/Logs/
+UserSettings/Layouts/default-2021.dwlt
