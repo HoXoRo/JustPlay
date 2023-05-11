@@ -6,7 +6,7 @@ using UnityEngine;
 public class SnackGame : MonoBehaviour
 {
 
-    [Header("食物预制体")] public GameObject foodPre;
+    [Header("食物预制体")] public GameObject foodCellPre;
     
     // Start is called before the first frame update
     void Start()
@@ -33,12 +33,10 @@ public class SnackGame : MonoBehaviour
         {
             for (float j = bottomLeft.y; j < topRight.y; j += offestY)
             {
-                var x = i + UnityEngine.Random.Range(0, offestX);
-                var y = j + UnityEngine.Random.Range(0, offestY);
-
-                var food = Instantiate(foodPre);
+                var food = Instantiate(foodCellPre);
                 food.transform.parent = transform;
-                food.transform.localPosition = new Vector3(x, y, 0);
+                food.transform.localPosition = new Vector3(i, j, 0);
+                food.GetComponent<FoodCellPrefab>().ShowFood();
             }
         }
     }

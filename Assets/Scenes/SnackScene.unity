@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42457c4f562dedf45af39dfc2b6b8d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodPre: {fileID: 431990952118380888, guid: c94683dd2b1ca354f9fd6111b002d971, type: 3}
+  foodCellPre: {fileID: 7961297186095131312, guid: c94683dd2b1ca354f9fd6111b002d971, type: 3}
 --- !u!4 &915135352
 Transform:
   m_ObjectHideFlags: 0
@@ -383,7 +383,6 @@ MonoBehaviour:
   bodyPrefab: {fileID: 8021046587527159554, guid: fe9a139dec4e9504db7269d580937842, type: 3}
   angle: 10
   moveSpeed: 1
-  foodNum: 3
 --- !u!65 &1422397738
 BoxCollider:
   m_ObjectHideFlags: 0

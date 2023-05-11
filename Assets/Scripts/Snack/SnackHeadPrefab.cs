@@ -17,11 +17,8 @@ public class SnackHeadPrefab : MonoBehaviour
     public int angle = 10;
 
     [Header("移动速度")]
-    public float moveSpeed = 1f;
-    
-    [Header("食物个数-长身体")]
-    public int foodNum = 3;
-    
+    public float moveSpeed = 2f;
+
     private List<Transform> bodyList = new List<Transform>();
 
     private float bodyOffest = 1f;
@@ -33,15 +30,16 @@ public class SnackHeadPrefab : MonoBehaviour
 
     private int foodCnt;
 
-    // 朝向
-    private Vector3 oriention;
-    // Start is called before the first frame update
+    private Dictionary<int, int> snackLevelFood = new Dictionary<int, int>()
+    {
+        
+    };
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -148,10 +146,11 @@ public class SnackHeadPrefab : MonoBehaviour
     {
         if (other.transform.CompareTag("food"))
         {
-            Destroy(other.gameObject);
-
+            var foodCell = other.transform.parent;
+            foodCell.GetComponent<FoodCellPrefab>().HideFood();
+            
             foodCnt++;
-            if (foodCnt >= foodNum)
+            if (foodCnt >= 3)
             {
                 foodCnt = 0;
                 Grow();
