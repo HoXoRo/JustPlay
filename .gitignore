@@ -6,3 +6,6 @@
 /Temp/
 /Logs/
 UserSettings/Layouts/default-2021.dwlt
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+/obj/
