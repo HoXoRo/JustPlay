@@ -330,8 +330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42457c4f562dedf45af39dfc2b6b8d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snackPre: {fileID: 4182970868040484928, guid: 5830b4b5464f3ec49b2f1dee1a064722, type: 3}
   foodCellPre: {fileID: 7961297186095131312, guid: c94683dd2b1ca354f9fd6111b002d971, type: 3}
-  headPre: {fileID: 5905018821654315698, guid: d9039a45a94e0a34cb32d27b7eefe0ec, type: 3}
 --- !u!4 &915135352
 Transform:
   m_ObjectHideFlags: 0

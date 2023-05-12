@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Snack;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SnackGame : MonoBehaviour
 {
+    
+    [Header("蛇预制体")] public GameObject snackPre;
 
     [Header("食物预制体")] public GameObject foodCellPre;
     
-    [Header("蛇头预制体")] public GameObject headPre;
-
     
     // Start is called before the first frame update
     void Start()
@@ -27,15 +28,15 @@ public class SnackGame : MonoBehaviour
     // 游戏初始化
     private void InitGame()
     {
-        GenerateHead();
+        GenerateSnack();
         GenerateFood();
     }
     
-    private void GenerateHead()
+    private void GenerateSnack()
     {
-        var head = Instantiate(headPre);
-        head.transform.parent = transform;
-        head.transform.localPosition = Vector3.zero;
+        var snack = Instantiate(snackPre);
+        snack.transform.parent = transform;
+        snack.transform.localPosition = Vector3.zero;
     }
 
     // 生成食物

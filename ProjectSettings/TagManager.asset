@@ -9,6 +9,9 @@ TagManager:
   - Floor
   - wall
   - food
+  - head
+  - body
+  - snackFood
   layers:
   - Default
   - TransparentFX

@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 5905018821654315702}
   - component: {fileID: 5905018821654315697}
   - component: {fileID: 5905018821654315696}
-  - component: {fileID: 5905018821654315699}
   - component: {fileID: 5905018821654315700}
+  - component: {fileID: -9048063045395994649}
   m_Layer: 10
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,21 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5905018821654315699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5905018821654315698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f779e56e5c8fa74e8be805c4f6c0cad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodyPrefab: {fileID: 8021046587527159554, guid: fe9a139dec4e9504db7269d580937842, type: 3}
-  angle: 10
-  moveSpeed: 2
 --- !u!54 &5905018821654315700
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,3 +115,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-9048063045395994649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905018821654315698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f779e56e5c8fa74e8be805c4f6c0cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPrefab: {fileID: 8021046587527159554, guid: fe9a139dec4e9504db7269d580937842, type: 3}
+  bodyFoodPrefab: {fileID: 6996689143678389862, guid: 5f3d3221eb1ecf34393c19af301b10a8, type: 3}
+  angle: 10
+  moveSpeed: 2
+  isEnd: 0

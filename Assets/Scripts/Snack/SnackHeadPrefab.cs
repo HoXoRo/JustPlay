@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.iOS.Xcode;
 using UnityEngine;
@@ -9,8 +10,9 @@ using UnityEngine.UIElements;
 
 public class SnackHeadPrefab : MonoBehaviour
 {
-
     [Header("蛇身")] public GameObject bodyPrefab;
+    
+    [Header("蛇身食物")] public GameObject bodyFoodPrefab;
 
     [Header("转向角度")]
     [Range(0, 360)] 
@@ -41,6 +43,10 @@ public class SnackHeadPrefab : MonoBehaviour
     
     // 移动速度倍数
     private int speedUp = 1;
+    
+    // 是否已经结束
+    [HideInInspector]
+    public bool isEnd = false;
 
     void Start()
     {
@@ -49,6 +55,11 @@ public class SnackHeadPrefab : MonoBehaviour
 
     void Update()
     {
+        if (isEnd)
+        {
+            return;
+        }
+
         SnackMove();
 
         // 转向
@@ -65,7 +76,7 @@ public class SnackHeadPrefab : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Grow();
+            End();
         }
 
         // 加速
@@ -165,6 +176,26 @@ public class SnackHeadPrefab : MonoBehaviour
         }
     }
 
+    private void End()
+    {
+        isEnd = true;
+        bodyList.Add(transform);
+
+        foreach (var body in bodyList)
+        {
+            // 生成食物
+            var bodyFood = Instantiate(bodyFoodPrefab, transform.parent);
+            bodyFood.transform.position = body.transform.position;
+            bodyFood.transform.localScale = body.transform.localScale;
+            bodyFood.transform.rotation = body.transform.rotation;
+        }
+        
+        foreach (var body in bodyList)
+        {
+            Destroy(body.gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("food"))
@@ -178,6 +209,17 @@ public class SnackHeadPrefab : MonoBehaviour
                 foodCnt = 0;
                 Grow();
             }
-        }    
+        }
+        
+        // if (other.transform.CompareTag("bodyFood"))
+        // {
+        //     foodCnt += 2;
+        //     if (foodCnt >= foodNeed)
+        //     {
+        //         foodCnt = 0;
+        //         Grow();
+        //     }
+        //     Destroy(other.transform.gameObject);
+        // }
     }
 }
