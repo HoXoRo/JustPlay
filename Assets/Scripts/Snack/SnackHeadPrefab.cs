@@ -16,24 +16,31 @@ public class SnackHeadPrefab : MonoBehaviour
     [Range(0, 360)] 
     public int angle = 10;
 
-    [Header("移动速度")]
+    [Header("初始移动速度")]
     public float moveSpeed = 2f;
 
+    // 蛇身
     private List<Transform> bodyList = new List<Transform>();
 
+    // 蛇身间距
     private float bodyOffest = 1f;
 
+    // 存储蛇头移动点
     private List<Vector3> headPosList = new List<Vector3>();
+    // 存储蛇头朝向
     private List<Quaternion> rotationList = new List<Quaternion>();
-
-    private int rotation;
-
+    
+    // 累计食物数量
     private int foodCnt;
 
-    private Dictionary<int, int> snackLevelFood = new Dictionary<int, int>()
-    {
-        
-    };
+    // 需要的食物数量
+    private int foodNeed = 3;
+
+    // 等级
+    private int level = 1;
+    
+    // 移动速度倍数
+    private int speedUp = 1;
 
     void Start()
     {
@@ -42,30 +49,40 @@ public class SnackHeadPrefab : MonoBehaviour
 
     void Update()
     {
+        SnackMove();
+
+        // 转向
         if (Input.GetKeyDown(KeyCode.A))
         {
-            ChangeOri(-1);
+            ChangeOri(1);
         }
 
+        // 转向
         if (Input.GetKeyDown(KeyCode.D))
         {
-            ChangeOri(1);
+            ChangeOri(-1);
         }
         
         if (Input.GetKeyDown(KeyCode.S))
         {
             Grow();
         }
-        
-        if (Input.GetKeyDown(KeyCode.Z))
+
+        // 加速
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            SnackLarger();
+            speedUp = 5;
+        }
+        
+        // 还原速度
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            speedUp = 1;
         }
     }
 
     private void FixedUpdate()
     {
-        SnackMove();
     }
 
     // 改变朝向
@@ -77,7 +94,7 @@ public class SnackHeadPrefab : MonoBehaviour
     // 长大
     private void Grow()
     {
-        if (bodyList.Count > 0 && bodyList.Count % 10 == 0 && bodyOffest < 5)
+        if (bodyList.Count > 0 && bodyList.Count % 10 == 0 && level < 5)
         {
             SnackLarger();
         }
@@ -93,16 +110,22 @@ public class SnackHeadPrefab : MonoBehaviour
     // 变大
     private void SnackLarger()
     {
+        // 等级
+        level++;
+        // 身体间距
         bodyOffest++;
+        // 长身体需要的食物变多
+        foodNeed *= level;
+        // 速度减缓
+        moveSpeed -= level * 0.1f;
     }
 
     // 移动
     private void SnackMove()
     {
-        transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
+        transform.Translate(moveSpeed * speedUp * Time.deltaTime, 0, 0);
         headPosList.Add(transform.position);
         rotationList.Add(transform.rotation);
-        
         transform.localScale = Vector3.one * bodyOffest;
 
         if (bodyList.Count > 0)
@@ -150,7 +173,7 @@ public class SnackHeadPrefab : MonoBehaviour
             foodCell.GetComponent<FoodCellPrefab>().HideFood();
             
             foodCnt++;
-            if (foodCnt >= 3)
+            if (foodCnt >= foodNeed)
             {
                 foodCnt = 0;
                 Grow();

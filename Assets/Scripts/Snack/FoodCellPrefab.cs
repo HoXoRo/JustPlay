@@ -38,6 +38,7 @@ public class FoodCellPrefab : MonoBehaviour
         }
     }
 
+    // 展示食物，位置随机
     public void ShowFood()
     {
         foodTran.localScale = Vector3.one;
@@ -48,6 +49,7 @@ public class FoodCellPrefab : MonoBehaviour
         foodTran.localPosition = new Vector3(x, y, 0);
     }
 
+    // 隐藏食物
     public void HideFood()
     {
         foodTran.localScale = Vector3.zero;

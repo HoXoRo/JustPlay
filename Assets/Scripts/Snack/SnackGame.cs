@@ -24,12 +24,13 @@ public class SnackGame : MonoBehaviour
         
     }
 
+    // 游戏初始化
     private void InitGame()
     {
         GenerateHead();
         GenerateFood();
     }
-
+    
     private void GenerateHead()
     {
         var head = Instantiate(headPre);
