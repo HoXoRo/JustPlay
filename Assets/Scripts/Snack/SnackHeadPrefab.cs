@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEditor.iOS.Xcode;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class SnackHeadPrefab : MonoBehaviour
 {
@@ -51,6 +52,13 @@ public class SnackHeadPrefab : MonoBehaviour
     void Start()
     {
         
+    }
+
+    // 初始化位置
+    public void InitLocation()
+    {
+        transform.localPosition = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0);
+        transform.Rotate(Vector3.forward, Random.Range(0, 360));
     }
 
     void Update()

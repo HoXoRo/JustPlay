@@ -34,6 +34,14 @@ public class SnackGame : MonoBehaviour
     
     private void GenerateSnack()
     {
+        for (int i = 0; i < 3; i++)
+        {
+            CreateSnack();
+        }
+    }
+
+    private void CreateSnack()
+    {
         var snack = Instantiate(snackPre);
         snack.transform.parent = transform;
         snack.transform.localPosition = Vector3.zero;

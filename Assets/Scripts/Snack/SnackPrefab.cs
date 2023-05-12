@@ -23,6 +23,6 @@ public class SnackPrefab : MonoBehaviour
     {
         var head = Instantiate(headPre);
         head.transform.parent = transform;
-        head.transform.localPosition = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0);
+        head.GetComponent<SnackHeadPrefab>().InitLocation();
     }
 }
